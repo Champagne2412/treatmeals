@@ -1,50 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Menu.css";
 import Title from "../Title/Title.jsx";
 import food from "../../assets/akarapap.jpg";
 import { FaStar } from "react-icons/fa";
+import { menuData } from "../../assets/data.js";
 
 const Menu = () => {
+  const [activeCategory, setActiveCategory] = useState("starter");
+
+  const activeMenu =
+    menuData.find((item) => item.category === activeCategory)
+      ?.starterCategory ?? [];
+
   return (
     <div className="menu">
       <div className="menu-heading">
         <div className="title">
-
           <h2 className="title-one">
             Checkout our <span className="title-two">menu</span>
           </h2>
         </div>
         <div>
           <ul>
-            <li>Starter</li>
-            <li>Main</li>
-            <li>Soup</li>
-            <li>Dessert</li>
+            <li
+              className={activeCategory === "starter" ? "active" : ""}
+              onClick={() => setActiveCategory("starter")}
+            >
+              Starter
+            </li>
+            <li
+              className={activeCategory === "main" ? "active" : ""}
+              onClick={() => setActiveCategory("main")}
+            >
+              Main
+            </li>
+            <li
+              className={activeCategory === "soup" ? "active" : ""}
+              onClick={() => setActiveCategory("soup")}
+            >
+              Soup
+            </li>
+            <li
+              className={activeCategory === "dessert" ? "active" : ""}
+              onClick={() => setActiveCategory("dessert")}
+            >
+              Dessert
+            </li>
           </ul>
         </div>
       </div>
+
       <div className="menu-grid">
-
-        <div className="menu-card">
-          <div className="food-img">
-            <img src={food} alt="" />
-
-                <button className="btn">Buy now</button>
-              
-
-            <div className="img-span">
-              <FaStar style={{ color: "#ffc800" }} />
-              <p>4.6</p>
-              <span>(12)</span>
+        {activeMenu.map((item) => (
+          <div className="menu-card">
+            <div className="food-img">
+              <div className="img-container">
+                <img src={item.img} alt="" />
+                <div className="overlay">
+                  {" "}
+                  <button className="btn drop-btn">Buy now</button>
+                </div>
+              </div>
+              <div className="food-details">
+                <FaStar style={{ color: "#ffc800" }} />
+                <p>{item.rating}</p>
+                <span>({item.ratingNum})</span>
+              </div>
             </div>
-
+            <div className="desc">
+              <h4>{item.name}</h4>
+              <p>{item.desc}</p>
+              <h4 className="price">{item.price}</h4>
+            </div>
           </div>
-          <div className="desc">
-            <h4>Food</h4>
-            <p>Desc</p>
-            <h4 className="price">$8.99</h4>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
