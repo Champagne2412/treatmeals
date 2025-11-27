@@ -1,0 +1,72 @@
+.div {
+  display: flex;
+  /* gap: 2rem; */
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 4rem;
+}
+.title-con {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  gap: 2rem;
+}
+.title {
+  font-size: 28px;
+}
+.title .heading {
+  color: var(--primary-color);
+}
+.title-one {
+  color: var(--secondary-color);
+}
+.title-two {
+  color: #fff;
+  background-color: var(--primary-color);
+  font-style: italic;
+  padding: 2px 16px;
+  display: inline-block;
+  transform: skewX(-8deg);
+}
+.title-con p {
+  font-size: 15px;
+  color: var(--grey);
+}
+.title-con .btn {
+  font-weight: 800;
+}
+.order-section {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+.icon {
+  font-size: 35px;
+}
+.meet-chef {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  color: var(--grey);
+  cursor: pointer;
+}
+.meet-chef:hover,
+.meet-chef p:hover {
+  color: var(--primary-color);
+}
+
+.image-div {
+  width: 40%;
+  /* height: 500px; */
+}
+.image-div img {
+  width: 90%;
+  border-radius: var(--card-border-radius);
+}
+.reverse-layout {
+  flex-direction: row-reverse;
+}
+.vertical-img {
+  transform: rotate(90deg);
+}

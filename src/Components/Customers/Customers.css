@@ -1,0 +1,28 @@
+.cust-div {
+  margin-top: 10rem;
+}
+.cust-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.customers-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+}
+.customers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+  width: 25%;
+  margin-top: 5rem;
+}
+.customers img {
+  width: 30%;
+  border-radius: 50%;
+}

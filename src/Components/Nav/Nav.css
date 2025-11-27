@@ -1,0 +1,60 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 2rem;
+  /* color: var(--grey); */
+}
+.logo {
+  display: flex;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+.logo h2 {
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+.nav-content {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+nav ul {
+  list-style: none;
+}
+nav ul li {
+  display: inline-block;
+  margin-inline: 1.5rem;
+  font-size: 15px;
+  position: relative;
+  cursor: pointer;
+}
+.login {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.login p {
+  position: relative;
+  cursor: pointer;
+}
+
+/* hover effect */
+nav ul li::after,
+.login p::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: var(--secondary-color);
+  transform: scaleX(0);
+  transition: 0.2s ease;
+}
+nav ul li:hover:after,
+.login p:hover:after {
+  color: var(--primary-color);
+  transform: scaleX(1);
+}
