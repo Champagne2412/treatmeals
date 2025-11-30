@@ -37,5 +37,12 @@ body {
 }
 .containerrr{
   margin-inline: 8%;
+  position: relative;
 
+}
+.for-hero{
+  position: absolute;
+  right: 26%;
+  top: 99%;
+  z-index: -1111;
 }

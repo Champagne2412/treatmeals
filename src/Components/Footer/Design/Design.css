@@ -1,0 +1,14 @@
+.design {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  /* background-color: var(--grey); */
+  align-items: center;
+  gap: 4px;
+  width: 70px;
+}
+.design div{
+    background-color: var(--dark-grey-shade);
+    /* width: 50px; */
+    padding: 3px;
+    border-radius: 50%;
+}

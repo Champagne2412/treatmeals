@@ -8,6 +8,8 @@ import Services from "./Components/Services/Services";
 import Brand from "./Components/BrandName/Brand";
 import Customers from "./Components/Customers/Customers";
 import Download from "./Components/AppDownload/Download";
+import Footer from "./Components/Footer/Footer.jsx";
+import Design from "./Components/Footer/Design/Design.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -19,11 +21,15 @@ function App() {
         <Hero />
         <Details />
         <Menu />
-        <Services/>
-        <Brand/>
-        <Customers/>
+        <Services />
+        <div style={{position:"relative"}}>
+          <Brand />
+          <div className="for-hero"><Design/></div>
+        </div>
+        <Customers />
       </div>
-      <Download/>
+      <Download />
+      <Footer/>
     </>
   );
 }
