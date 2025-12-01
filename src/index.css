@@ -46,3 +46,9 @@ body {
   top: 99%;
   z-index: -1111;
 }
+@media (max-width: 1300px){
+.containerrr{
+  margin-inline: 4%;
+
+}
+}
