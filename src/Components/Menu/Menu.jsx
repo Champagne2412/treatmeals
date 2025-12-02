@@ -20,7 +20,7 @@ const Menu = () => {
             Checkout our <span className="title-two">menu</span>
           </h2>
         </div>
-        <div>
+        <div className="menu-list">
           <ul>
             <li
               className={activeCategory === "starter" ? "active" : ""}

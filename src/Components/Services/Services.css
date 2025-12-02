@@ -1,5 +1,5 @@
 .services-con {
-  width: 100%;
+  /* width: 100%; */
 }
 
 .services-heading {
@@ -14,11 +14,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10rem;
+  gap: 6rem;
 }
 
 .services {
-  width: 15%;
+  width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -51,4 +51,22 @@
 
 .services:hover {
   transform: scale(1.05);
+}
+@media(max-width: 1500px){
+  .services-grid {
+
+  gap: 2rem;
+}
+}
+@media(max-width: 1400px){
+  .services-grid {
+
+  gap: 2rem;
+}
+}
+@media(max-width: 1025px){
+  .services-grid {
+
+  flex-direction: column;
+}
 }

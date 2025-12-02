@@ -22,14 +22,14 @@ const Services = () => {
           </div>
           <h4
             style={{
-              fontSize: "18px",
+              fontSize: "22px",
               fontWeight: "600",
               color: "var(--secondary-color)",
             }}
           >
             230 + Locations
           </h4>
-          <p style={{ fontSize: "12px" }}>
+          <p style={{ fontSize: "18px" }}>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.{" "}
           </p>
           <div className="learn-more">
@@ -43,14 +43,14 @@ const Services = () => {
           </div>
           <h4
             style={{
-              fontSize: "18px",
+              fontSize: "22px",
               fontWeight: "600",
               color: "var(--secondary-color)",
             }}
           >
             Professional Chefs
           </h4>
-          <p style={{ fontSize: "12px" }}>
+          <p style={{ fontSize: "18px" }}>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.{" "}
           </p>
           <div className="learn-more">
@@ -64,14 +64,14 @@ const Services = () => {
           </div>
           <h4
             style={{
-              fontSize: "18px",
+              fontSize: "22px",
               fontWeight: "600",
               color: "var(--secondary-color)",
             }}
           >
             Birthday Catering
           </h4>
-          <p style={{ fontSize: "12px" }}>
+          <p style={{ fontSize: "18px" }}>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.{" "}
           </p>
           <div className="learn-more">

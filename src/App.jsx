@@ -16,8 +16,8 @@ function App() {
 
   return (
     <>
-      <div className="containerrr">
         <Nav />
+      <div className="containerrr">
         <Hero />
         <Details />
         <Menu />

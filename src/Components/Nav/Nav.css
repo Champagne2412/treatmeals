@@ -3,6 +3,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding-block: 2rem;
+  margin-inline: 8%;
   /* color: var(--grey); */
 }
 .logo {
@@ -57,4 +58,64 @@ nav ul li:hover:after,
 .login p:hover:after {
   color: var(--primary-color);
   transform: scaleX(1);
+}
+.ham-menu {
+  display: none;
+}
+.close {
+  display: none;
+}
+@media (max-width: 1100px) {
+  .ham-menu {
+    display: block;
+    font-size: 30px;
+    color: var(--secondary-color);
+  }
+  .nav-content {
+    position: fixed;
+    margin-top: 1.8rem;
+    inset: 0;
+
+    background: #ffffff;
+    z-index: 2;
+    width: 90%;
+    height: fit-content;
+    padding-block: 30px;
+    transition: 0.5s ease-in;
+    border: 1px solid var(--light-grey-shade);
+    flex-direction: column;
+    margin-inline: auto;
+    gap: 0;
+    border-radius: 1rem;
+  }
+  .open-menu {
+    transform: translateX(0);
+  }
+  .close-menu {
+    transform: translateX(150%);
+  }
+  .close {
+    display: block;
+    position: absolute;
+    right: 5%;
+    margin-bottom: 2rem;
+    font-size: 30px;
+    color: var(--secondary-color);
+  }
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    gap: 1.5rem;
+  }
+  nav ul li {
+    display: block;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  .login {
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
 }

@@ -146,6 +146,9 @@ input:focus {
   .links {
    gap: 8rem;
   }
+  .footer-div {
+  margin-inline: 2rem;
+}
 
 }
 @media (max-width: 900px) {
@@ -162,6 +165,10 @@ input:focus {
   .footer-div {
   margin-inline: 2rem;
   }
+  .copyright {
+flex-direction: column;
+gap: 1rem;
+}
 }
 @media (max-width: 650px) {
   .links {
