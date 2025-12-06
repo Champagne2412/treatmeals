@@ -7,6 +7,31 @@ import youtube from "../../assets/png8.png";
 import { Link } from "react-scroll";
 
 const Footer = () => {
+  const [result, setResult] = React.useState("");
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    setResult("Sending....");
+    const formData = new FormData(event.target);
+
+    formData.append("access_key", "94fb122f-877f-4320-afb6-57bbe899e91f");
+
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setResult("Form Submitted Successfully");
+      event.target.reset;
+      event.target.reset();
+    } else {
+      console.log("Error", data);
+      setResult(data.message);
+    }
+  };
   return (
     <footer>
       <div className="footer-div">
@@ -90,9 +115,12 @@ const Footer = () => {
                 weekly. And we promise no spam.
               </p>
               <div className="input">
-                <input type="email" placeholder="your email address" />
-                <button className="btn btn-sub">Subscribe</button>
+                <form onSubmit={onSubmit}>
+                  <input type="email" placeholder="your email address" />
+                  <button className="btn btn-sub">Subscribe</button>
+                </form>
               </div>
+              <p style={{ display: "block" }}>{result}</p>
             </div>
           </div>
         </div>
@@ -102,7 +130,10 @@ const Footer = () => {
             <h3>TreatMeals Inc.</h3>
           </div>
           <p>&copy; 2025 TreatMeals Inc. All Rights Reserved</p>
-          <div className="social-link" style={{ display: "flex", alignItems: "center", gap: "0.7rem" }}>
+          <div
+            className="social-link"
+            style={{ display: "flex", alignItems: "center", gap: "0.7rem" }}
+          >
             <img src={facebook} alt="" width={30} />
             <img src={twitter} alt="" width={30} />
             <img src={youtube} alt="" width={30} />
