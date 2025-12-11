@@ -1,15 +1,59 @@
 import React from "react";
 import "./Register.css";
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Register = () => {
-  const [state, setState] = useState("register");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [state, setState] = useState(location.state?.mode || "register");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [errors, setErrors] = useState({});
+  // const [loginErrors, setLoginErrors] = useState({});
 
   const handleLoginState = () => {
     setState("login");
   };
   const handleSignupState = () => {
     setState("register");
+  };
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+
+    const bodyData =
+      state === "login" ? { email, password } : { name, email, password };
+
+    const url =
+      state === "login"
+        ? "http://localhost:3000/api/user/login"
+        : "http://localhost:3000/api/user/signup";
+
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "content-Type": "application/json" },
+        body: JSON.stringify(bodyData),
+      });
+      const data = await res.json();
+      console.log(data)
+      if (data.errors) {
+        setErrors({
+          name: data.errors.name,
+          email: data.errors.email,
+          password: data.errors.password,
+        });
+      } else {
+        setErrors({ name: "", email: "", password: "" });
+      }
+      if (data.user) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -24,15 +68,20 @@ const Register = () => {
         ) : (
           <h2>Welcome Back!</h2>
         )}
-        <form>
+        <form onSubmit={submitForm}>
           {state !== "login" && (
             <div className="forms">
               <label htmlFor="name">Name</label>
               <input
                 className="reg-input"
                 type="text"
+                name="name"
+                required
                 placeholder="Enter your name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
+              <p className="error">{errors.name}</p>
             </div>
           )}
           <div className="forms">
@@ -40,8 +89,13 @@ const Register = () => {
             <input
               className="reg-input"
               type="email"
+              name="email"
+              required
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
+            <p className="error">{errors.email}</p>
           </div>
 
           <div className="forms">
@@ -50,9 +104,12 @@ const Register = () => {
               className="reg-input"
               type="password"
               name="password"
-              id=""
+              required
               placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
+            <p className="password error">{errors.password}</p>
           </div>
 
           {state !== "login" && <p>Must be ate least 8 characters.</p>}
@@ -61,9 +118,7 @@ const Register = () => {
               Create account
             </button>
           ) : (
-            <button className="btn" type="submit">
-              Login
-            </button>
+            <button className="btn">Login</button>
           )}
         </form>
       </div>
