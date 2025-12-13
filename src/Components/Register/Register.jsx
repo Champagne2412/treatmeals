@@ -3,7 +3,7 @@ import "./Register.css";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const Register = () => {
+const Register = ({ token, setToken, user, setUser }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [state, setState] = useState(location.state?.mode || "register");
@@ -11,7 +11,6 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [errors, setErrors] = useState({});
-  // const [loginErrors, setLoginErrors] = useState({});
 
   const handleLoginState = () => {
     setState("login");
@@ -34,11 +33,14 @@ const Register = () => {
     try {
       const res = await fetch(url, {
         method: "POST",
-        headers: { "content-Type": "application/json" },
+        headers: {
+          "content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify(bodyData),
       });
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       if (data.errors) {
         setErrors({
           name: data.errors.name,
@@ -48,8 +50,13 @@ const Register = () => {
       } else {
         setErrors({ name: "", email: "", password: "" });
       }
+      if (data.token) {
+        setToken(data.token);
+      }
       if (data.user) {
+        setUser(data.user);
         navigate("/");
+        alert("Login successful");
       }
     } catch (error) {
       console.log(error);

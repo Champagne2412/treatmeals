@@ -7,32 +7,58 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoMdClose } from "react-icons/io";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
-const Nav = () => {
+const Nav = ({ token, setToken, user, setUser }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
 
   const openMenu = () => {
     setIsOpen(true);
   };
+
   const closeMenu = () => {
     setIsOpen(false);
   };
+
   const handleLogout = async () => {
     if (!window.confirm("Are you sure you want to log out?")) return;
     try {
       const res = await fetch("http://localhost:3000/api/user/logout", {
         method: "GET",
-        headers: { "content-Type": "application/json" },
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       });
+      console.log("Logout response status:", res.status);
       if (res.ok) {
+        const data = await res.json();
+        localStorage.removeItem("token");
         localStorage.removeItem("user");
+        setToken(null);
+        setUser(null);
         navigate("/register?mode=login");
-        alert("You've successfully logged out");
+        alert(data.message);
+      } else {
+        const errorData = await res.json();
+        console.error("Logout failed:", errorData);
+        throw new Error("Logout failed");
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+  const handleLogin = () => {
+    navigate("/register?mode=login");
+    // closeMenu();
+  };
+
+  const handleSignup = () => {
+    navigate("/register?mode=register");
+    closeMenu();
+  };
+
   return (
     <div>
       <nav>
@@ -59,8 +85,10 @@ const Nav = () => {
             <li></li>
           </ul>
           <div className="login">
-            <p>Login</p>
-            <button className="btn">Sign Up</button>
+            <p onClick={handleLogin}>Login</p>
+            <button onClick={handleSignup} className="btn">
+              Sign Up
+            </button>
             <button className="btn" onClick={handleLogout}>
               Logout
             </button>

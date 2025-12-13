@@ -11,25 +11,27 @@ import Download from "./Components/AppDownload/Download";
 import Footer from "./Components/Footer/Footer.jsx";
 import Design from "./Components/Footer/Design/Design.jsx";
 
-function App() {
+function App({token, setToken, user, setUser}) {
   const [count, setCount] = useState(0);
 
   return (
     <>
-        <Nav />
+      <Nav token={token} setToken={setToken} user={user} setUser={setUser} />
       <div className="containerrr">
         <Hero />
         <Details />
         <Menu />
         <Services />
-        <div style={{position:"relative"}}>
+        <div style={{ position: "relative" }}>
           <Brand />
-          <div className="for-hero"><Design/></div>
+          <div className="for-hero">
+            <Design />
+          </div>
         </div>
         <Customers />
       </div>
       <Download />
-      <Footer/>
+      <Footer />
     </>
   );
 }
