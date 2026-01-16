@@ -85,11 +85,15 @@ const Nav = ({ token, setToken, user, setUser }) => {
             <li></li>
           </ul>
           <div className="login">
-            <p onClick={handleLogin}>Login</p>
+            <p 
+            // onClick={handleLogin}
+            >Login</p>
             <button onClick={handleSignup} className="btn">
               Sign Up
             </button>
-            <button className="btn" onClick={handleLogout}>
+            <button className="btn" 
+            // onClick={handleLogout}
+            >
               Logout
             </button>
           </div>
